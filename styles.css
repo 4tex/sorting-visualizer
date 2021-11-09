@@ -1,0 +1,141 @@
+body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0px;
+    background-color: rgb(150, 175, 197);
+}
+
+.navbar{
+    position: relative;
+    bottom: 16px;
+    width: 100%;
+    height: 80px;
+    background-color: rgb(2, 3, 7);
+    color: whitesmoke;
+}
+
+ul {
+    position: relative;
+    top: 10px;
+    display: flex;
+    justify-content: space-evenly;
+    list-style-type: none;
+}
+
+li {
+
+    border: 2px solid white;
+    padding: 7px 12px 7px 12px;
+    border-radius: 50px;
+
+    /* border: 2px solid white;
+    padding: 7px;
+    border-radius: 50px; */
+
+    cursor: pointer;
+    margin-top: 20px;
+}
+
+li:hover, #pause:hover, #stop:hover{
+    background-color: rgb(11, 10, 54);
+}
+
+.speed {
+    display: flex;
+    border: none;
+}
+
+.arena {
+
+    position: relative;
+    display: flex;  
+    justify-content: center;
+    align-items: baseline;
+    height: 540px;
+    margin-left: 20px;
+    margin-right: 20px;
+    
+}
+
+.element {
+
+    width: 10px;
+    border: 1px solid rgb(205, 239, 250);
+    margin-left: 2px;
+    background-color: rgb(55, 11, 99);
+   
+}
+
+/* .footer {
+    position: fixed;
+    width: 100%;
+    height: 50px;
+    bottom: 0;
+    text-align: center;
+    color: whitesmoke;
+    background-color: rgb(20, 34, 114);
+} */
+
+a {
+    color: whitesmoke;
+}
+
+.created {
+    margin-top: 5px;
+}
+
+a:hover {
+    color: blue;
+}
+
+.play-pause {
+
+    width: 100%;
+    height: 100px;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color:  black;   
+    text-align: center;
+    color: white;
+    /* cursor: pointer; */
+
+}
+
+
+
+#pause {
+
+
+    width: 100px;
+    height: 40px;
+    padding-right: 2px;
+    background-color: black;
+    color: white;
+    border: 3px solid white;
+    
+    border-radius: 50px 0px 0px 50px;
+    cursor: pointer;
+}
+
+#stop {
+    width: 100px;
+    height: 40px;
+    background-color: black;
+    color: white;
+    border: 3px solid white;
+    border-radius: 0px 50px 50px 0px;
+    cursor: pointer;
+}
+
+
+
+@media only screen and (max-width: 600px) {
+    .arena {
+      margin-bottom: 60px;
+    }
+    .navbar {
+        font-size: 10px;
+    }
+  }

@@ -1,0 +1,34 @@
+<!DOCTYPE html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="iE=edge">
+    <link rel="stylesheet" href="./styles.css">
+    <title>Sorting Visualizer</title>
+
+</head>
+
+<body>
+    <div class="navbar">
+        <nav>
+           <ul>
+               <li id="create">Create a random array</li>
+               <li class="speed"><label for="speed" class="item">Speed</label><input type="range" id="speed" class="item" min=10 max=500></li>
+               <li id="bubble">Bubble Sort</li> 
+               <li id="merge">Merge Sort</li>
+               <li id="insertion">Insertion Sort</li>
+               <li id="quick">Quick Sort</li>
+           </ul>
+        </nav>
+    </div>
+    
+    <div class="arena"></div>
+
+    <div class="play-pause">
+        <button id="pause">Pause</button>
+        <button id="stop">Stop</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
