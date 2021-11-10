@@ -57,27 +57,37 @@ bubble.addEventListener("click", async function(){
 
     console.log(children);
 
-    let left = children[0].style.height;
 
-    for(let i = 0; i<100; i++){
+    for(let i = 0; i< 100; i++){
 
-        for( let j = i ; j< 100 - i - 1; j++){
+        for( let j = 0 ; j<100 - i - 1; j++){
+
+            let str = children[j].style.height;
+            let left = parseInt(str.substr(0, str.length - 2));
+
+            // console.log(str);
+            // console.log(left);
+
+
+            str = children[j+1].style.height;
+            let right = parseInt(str.substr(0, str.length - 2));
+
+            // console.log(str);
+            // console.log(right);
 
             
-            let right = children[j+1].style.height;
 
-            if(i ===0 && j === 0){
-                console.log(left);
+            if(left > right){
+
+                children[j].style.height = right + "px";
+                children[j+1].style.height = left + "px";
+
             }
 
-            children[j].style.height = left;
+            // console.log(children[j].style.height);
+            // console.log(children[j+1].style.heigt);
+            // console.log("-----");
 
-            // if(left > right){
-
-            //     children[j].style.height = right;
-            //     children[j+1].style.heigt = left;
-
-            // }
 
         }
 
