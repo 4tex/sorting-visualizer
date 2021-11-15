@@ -15,8 +15,8 @@ async function createArray(){
 
     nums = [];
     for( let i = 0 ; i<100 ; i++){
-        // nums.push(between(1,25));
-        nums.push(25 - (0.25 * i));
+        nums.push(between(1,25));
+        // nums.push(25 - (0.25 * i));
     }
 
     let arena = document.querySelector(".arena");
@@ -224,3 +224,63 @@ insertion.addEventListener("click", async function(){
     }
 
 });
+
+let quick = document.getElementById("quick");
+
+function find_pivot(children, l , r){
+
+    let maxi = get_height(children[r]);
+
+    let i = l - 1;
+    let temp;
+
+    for( let j = l ; j < r; j++){
+
+        let curr = get_height(children[j]);
+        if( curr <= maxi ){
+
+            temp = get_height( children [i+1]);
+            
+            children[j].style.height = temp + "px";
+            children[i+1].style.height = curr + "px";
+            i++;
+        }
+
+    }
+
+    // temp = get_height(children[i+1]);
+    // children[i+1].style.height = maxi + "px";
+    // children[r].style.height = temp + "px";
+
+    return i + 1;
+
+}
+
+function quick_sort( children , l, r){
+
+    if(l >= r) return;
+
+    let pivot = find_pivot(children , l, r);
+
+    console.log(l + " " + r + " " + pivot);
+
+    let temp = children[pivot].style.height;
+    children[pivot].style.height = children[r].style.height;
+    children[r].style.height = temp;
+    
+    quick_sort(children , l , pivot - 1);
+    quick_sort(children, pivot + 1, r);
+
+}
+
+quick.addEventListener("click", async function(){
+    
+    console.log("quick is clicking");
+
+    let arena = document.querySelector(".arena");
+    let children = arena.children;
+
+    quick_sort(children, 0, 99);
+
+
+} )
