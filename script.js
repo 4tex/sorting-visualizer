@@ -1,7 +1,22 @@
-// console.log("script added");
-
 let nums = [];
 let canCreate = 1;
+const speed_element = document.getElementById("speed");
+const arena = document.querySelector(".arena");
+let children;
+
+const sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay));
+
+function get_height(child){
+
+    let str = child.style.height;
+    let curr = parseInt(str.substr(0, str.length - 2));
+    return curr;
+
+}
+
+function speed(){
+    return speed_element.max - speed_element.value;
+}
 
 function between(min , max){
 
@@ -12,11 +27,9 @@ function between(min , max){
 
 async function createArray(){
 
-
     nums = [];
     for( let i = 0 ; i<100 ; i++){
         nums.push(between(1,25));
-        // nums.push(25 - (0.25 * i));
     }
 
     let arena = document.querySelector(".arena");
@@ -32,7 +45,7 @@ async function createArray(){
 
     }
 
-    console.log("array created");
+    children = arena.children;
 
 }
 
@@ -52,26 +65,16 @@ let bubble = document.getElementById("bubble");
 
 bubble.addEventListener("click", async function(){
 
-    // console.log("clicking");
-    let arena = document.querySelector(".arena");
-    let children = arena.children;
-
-    // console.log(children);
-
-
     for(let i = 0; i< 100; i++){
 
+        await sleep(100);
+
         for( let j = 0 ; j<100 - i - 1; j++){
-
-            // let str = children[j].style.height;
-            // let left = parseInt(str.substr(0, str.length - 2));
-
+            
+            // setTimeout(function(){console.log(j)} , 2000);
+            
             let left = get_height(children[j]);
             let right = get_height(children[j+1]);
-
-            // str = children[j+1].style.height;
-            // let right = parseInt(str.substr(0, str.length - 2));
-            
 
             if(left > right){
 
@@ -82,6 +85,9 @@ bubble.addEventListener("click", async function(){
 
         }
 
+        setTimeout(function(){console.log(i)} , 1000);
+        
+
     }
 
 })
@@ -91,7 +97,6 @@ let merge = document.getElementById("merge");
 function merge_array(children, l, r){
 
     let mid = Math.floor((l + r)/2);
-
     let temp_children = [];
 
     let i = l, j = mid+1;
@@ -124,24 +129,19 @@ function merge_array(children, l, r){
             }
         }
 
-        // console.log(temp_children.at(-1).style.height);
-
     }
 
     i = l;
     let heights = [];
 
     for( let k = 0 ; k< temp_children.length ; k++){
-        // console.log(temp_children[k].style.height + "->" + k);
-        heights.push(temp_children[k].style.height);
-        
+
+        heights.push(temp_children[k].style.height);      
         i++;
     }
 
     for( i = l, j = 0 ; i <= r; i++, j++){
-        
-        // console.log(children[i].style.height +"->" + i +" " + temp_children[j].style.height + "->" + j);
-
+    
         children[i].style.height = heights[j];
 
     }
@@ -161,49 +161,27 @@ function merge_sort( children, l , r){
 
 }
 
-function test_sort( children , l , r){
+// function test_sort( children , l , r){
 
-    let x = children[0];
+//     let x = children[0];
 
-    for( let i = l ; i<= r; i++){
+//     for( let i = l ; i<= r; i++){
 
-        children[i].style.height = x.style.height;
+//         children[i].style.height = x.style.height;
 
-    }
+//     }
 
-}
+// }
 
 merge.addEventListener("click", async function(){
-
-    let arena = document.querySelector(".arena");
-    let children = arena.children;
-
-    console.log("called");
-    
-    // test_sort(children, 0, 99);
     merge_sort(children , 0, 99);
-
 });
 
 let insertion = document.getElementById("insertion");
 
-function get_height(child){
-
-    let str = child.style.height;
-    let curr = parseInt(str.substr(0, str.length - 2));
-
-    return curr;
-
-};
-
 insertion.addEventListener("click", async function(){
 
-    console.log("insertion sort");
-
-    let arena = document.querySelector(".arena");
-    let children = arena.children;
-
-    for (i = 1; i < 100; i++)
+    for (let i = 1; i < 100; i++)
     {
         let key = get_height(children[i]);
         let j = i - 1;
@@ -215,11 +193,6 @@ insertion.addEventListener("click", async function(){
         }
 
         children[j + 1].style.height = key + "px";
-
-        // for(let k = 0 ; k < 5; k++){
-        //     console.log(get_height(children[k]));
-        // }
-        console.log(i + "th pass")
 
     }
 
@@ -248,10 +221,6 @@ function find_pivot(children, l , r){
 
     }
 
-    // temp = get_height(children[i+1]);
-    // children[i+1].style.height = maxi + "px";
-    // children[r].style.height = temp + "px";
-
     return i + 1;
 
 }
@@ -274,13 +243,7 @@ function quick_sort( children , l, r){
 }
 
 quick.addEventListener("click", async function(){
-    
-    console.log("quick is clicking");
-
-    let arena = document.querySelector(".arena");
-    let children = arena.children;
 
     quick_sort(children, 0, 99);
-
 
 } )
